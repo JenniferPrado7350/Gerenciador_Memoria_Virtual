@@ -1,0 +1,1033 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projetando um gerenciador de memória virtual - Por Jennifer do Prado: Referência ao ficheiro GerenciadorMemoriaVirtual.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projetando um gerenciador de memória virtual - Por Jennifer do Prado
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Componentes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Funções</a> &#124;
+<a href="#var-members">Variáveis</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência ao ficheiro GerenciadorMemoriaVirtual.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Diagrama de dependências de inclusão para GerenciadorMemoriaVirtual.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c__incl.png" border="0" usemap="#_gerenciador_memoria_virtual_8c" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c" id="_gerenciador_memoria_virtual_8c">
+<area shape="rect" title=" " alt="" coords="72,5,285,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,72,107"/>
+<area shape="rect" title=" " alt="" coords="97,80,167,107"/>
+<area shape="rect" title=" " alt="" coords="191,80,262,107"/>
+<area shape="rect" title=" " alt="" coords="286,80,357,107"/>
+</map>
+</div>
+</div>
+<p><a href="_gerenciador_memoria_virtual_8c_source.html">Ir para o código fonte deste ficheiro.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Componentes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_par.html">Par</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:aaaffe1325aff6582a8a54cc1358997a6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#aaaffe1325aff6582a8a54cc1358997a6">bitsPagina</a>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:aaaffe1325aff6582a8a54cc1358997a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a446c6e1d8fa490a063f9944d3f7327a1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a446c6e1d8fa490a063f9944d3f7327a1">bitsQuadro</a>&#160;&#160;&#160;7</td></tr>
+<tr class="separator:a446c6e1d8fa490a063f9944d3f7327a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dbd13dc4e60003ff5bd55f45b36bbe3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">bitsOffset</a>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:a6dbd13dc4e60003ff5bd55f45b36bbe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d912cb9ffef9f5cfa5f78184508051d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a7d912cb9ffef9f5cfa5f78184508051d">tamanhoTLB</a>&#160;&#160;&#160;16</td></tr>
+<tr class="separator:a7d912cb9ffef9f5cfa5f78184508051d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ce599abee7f7df397d492781a5130ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a1ce599abee7f7df397d492781a5130ba">tamanhoPagina</a>&#160;&#160;&#160;(1 &lt;&lt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">bitsOffset</a>)</td></tr>
+<tr class="separator:a1ce599abee7f7df397d492781a5130ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade156b38dc36e86363564ead1082a358"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#ade156b38dc36e86363564ead1082a358">tamanhoQuadro</a>&#160;&#160;&#160;<a class="el" href="_gerenciador_memoria_virtual_8c.html#a1ce599abee7f7df397d492781a5130ba">tamanhoPagina</a></td></tr>
+<tr class="separator:ade156b38dc36e86363564ead1082a358"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a430599efb8eb4dbaf44957ea7520516b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a430599efb8eb4dbaf44957ea7520516b">numeroDePaginas</a>&#160;&#160;&#160;(1 &lt;&lt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#aaaffe1325aff6582a8a54cc1358997a6">bitsPagina</a>)</td></tr>
+<tr class="separator:a430599efb8eb4dbaf44957ea7520516b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d0dd85408c06c9f93104af85ac75f3a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a6d0dd85408c06c9f93104af85ac75f3a">numeroDeQuadros</a>&#160;&#160;&#160;(1 &lt;&lt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#a446c6e1d8fa490a063f9944d3f7327a1">bitsQuadro</a>)</td></tr>
+<tr class="separator:a6d0dd85408c06c9f93104af85ac75f3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fe823b0df0e2d6d8e2fe92a1c73c732"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a4fe823b0df0e2d6d8e2fe92a1c73c732">tamanhoMemoria</a>&#160;&#160;&#160;(<a class="el" href="_gerenciador_memoria_virtual_8c.html#ade156b38dc36e86363564ead1082a358">tamanhoQuadro</a> * <a class="el" href="_gerenciador_memoria_virtual_8c.html#a6d0dd85408c06c9f93104af85ac75f3a">numeroDeQuadros</a>)</td></tr>
+<tr class="separator:a4fe823b0df0e2d6d8e2fe92a1c73c732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e318258d1ed482c1dec7af6af8de30a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a3e318258d1ed482c1dec7af6af8de30a">ArquivoBackingStorage</a>&#160;&#160;&#160;&quot;BACKING_STORE.bin&quot;</td></tr>
+<tr class="separator:a3e318258d1ed482c1dec7af6af8de30a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad00a7d071c99501f1aa042005314da02"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#ad00a7d071c99501f1aa042005314da02">retornaEnderecoFisico</a>(quadro,  offset)&#160;&#160;&#160;((numeroDoQuadro &lt;&lt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">bitsOffset</a>) | offset)</td></tr>
+<tr class="separator:ad00a7d071c99501f1aa042005314da02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4546f1d90fc85486963e6c553ef5dc44"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a4546f1d90fc85486963e6c553ef5dc44">retornaNumeroPagina</a>(endereco)&#160;&#160;&#160;((endereco &amp; ((1 &lt;&lt; (<a class="el" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">bitsOffset</a> + <a class="el" href="_gerenciador_memoria_virtual_8c.html#aaaffe1325aff6582a8a54cc1358997a6">bitsPagina</a>))- (1 &lt;&lt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">bitsOffset</a>))) &gt;&gt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">bitsOffset</a>)</td></tr>
+<tr class="separator:a4546f1d90fc85486963e6c553ef5dc44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a7ec29604512fa8da4be4774fbabfb3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a6a7ec29604512fa8da4be4774fbabfb3">retornaOffset</a>(endereco)&#160;&#160;&#160;(endereco &amp; ((1 &lt;&lt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">bitsOffset</a>) - 1))</td></tr>
+<tr class="separator:a6a7ec29604512fa8da4be4774fbabfb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a51ddc5c8c73be499aee26e5d0a9ac59b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a51ddc5c8c73be499aee26e5d0a9ac59b">pegaQuadroEscolhido</a> ()</td></tr>
+<tr class="separator:a51ddc5c8c73be499aee26e5d0a9ac59b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ffe77409d2779235138170af6bd0a77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a8ffe77409d2779235138170af6bd0a77">trataFalhaDePagina</a> (uint32_t numeroDaPagina)</td></tr>
+<tr class="separator:a8ffe77409d2779235138170af6bd0a77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3f86f7d401f027560f2e7e4ca82d9bd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#af3f86f7d401f027560f2e7e4ca82d9bd">verificaTLB</a> (uint32_t numeroDaPagina, uint32_t *numeroDoQuadro)</td></tr>
+<tr class="separator:af3f86f7d401f027560f2e7e4ca82d9bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a321c5787d4bec95ef53f2c3bf45b732c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a321c5787d4bec95ef53f2c3bf45b732c">atualizaTLB</a> (uint32_t numeroDaPagina, uint32_t numeroDoQuadro)</td></tr>
+<tr class="separator:a321c5787d4bec95ef53f2c3bf45b732c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a755d598200bbb0b545de43669a5c87b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a755d598200bbb0b545de43669a5c87b7">imprimeTLB</a> ()</td></tr>
+<tr class="separator:a755d598200bbb0b545de43669a5c87b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d3275df1df68a436dbb750c68383347"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a5d3275df1df68a436dbb750c68383347">traduzirEndereco</a> (uint32_t logica)</td></tr>
+<tr class="separator:a5d3275df1df68a436dbb750c68383347"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a692c1854dc41af028c966e9bf6bd55dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a692c1854dc41af028c966e9bf6bd55dd">imprimeTabelaDePaginas</a> (int bit)</td></tr>
+<tr class="separator:a692c1854dc41af028c966e9bf6bd55dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bd01ea6bf901e7dc5e359d9dac89d5f"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a9bd01ea6bf901e7dc5e359d9dac89d5f">acessarMemoriaFisica</a> (uint32_t fisica)</td></tr>
+<tr class="separator:a9bd01ea6bf901e7dc5e359d9dac89d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb39307e2d39c9342f4d24641115b7d7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#adb39307e2d39c9342f4d24641115b7d7">iniciarArquivos</a> (int argc, char **argv)</td></tr>
+<tr class="separator:adb39307e2d39c9342f4d24641115b7d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8089d7bd7adc71a472afd081d8d77980"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a8089d7bd7adc71a472afd081d8d77980">fecharArquivos</a> ()</td></tr>
+<tr class="separator:a8089d7bd7adc71a472afd081d8d77980"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53945cfe26f52cf4680c442e6b4da3a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a53945cfe26f52cf4680c442e6b4da3a5">Resultados</a> ()</td></tr>
+<tr class="separator:a53945cfe26f52cf4680c442e6b4da3a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
+<tr class="separator:a3c04138a5bfe5d72780bb7e82a18e627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variáveis</h2></td></tr>
+<tr class="memitem:a241b2be5a9f43dcbc54b71071329e87d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_par.html">Par</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d">TLB</a> [<a class="el" href="_gerenciador_memoria_virtual_8c.html#a7d912cb9ffef9f5cfa5f78184508051d">tamanhoTLB</a>]</td></tr>
+<tr class="separator:a241b2be5a9f43dcbc54b71071329e87d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bbee2cc69399782e9d690200cf5f561"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a5bbee2cc69399782e9d690200cf5f561">memoria</a> [<a class="el" href="_gerenciador_memoria_virtual_8c.html#a4fe823b0df0e2d6d8e2fe92a1c73c732">tamanhoMemoria</a>]</td></tr>
+<tr class="separator:a5bbee2cc69399782e9d690200cf5f561"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaab363c80c65a22ac7622a800006f8c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#acaab363c80c65a22ac7622a800006f8c">tabelaPaginas</a> [<a class="el" href="_gerenciador_memoria_virtual_8c.html#a430599efb8eb4dbaf44957ea7520516b">numeroDePaginas</a>]</td></tr>
+<tr class="separator:acaab363c80c65a22ac7622a800006f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaddc68069193a83dc58edfd10a9b2a06"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#aaddc68069193a83dc58edfd10a9b2a06">proximoQuadroLivre</a></td></tr>
+<tr class="separator:aaddc68069193a83dc58edfd10a9b2a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67c8cae86c8829b35ed4a66f9cbd57cd"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a67c8cae86c8829b35ed4a66f9cbd57cd">proximaTLBLivre</a></td></tr>
+<tr class="separator:a67c8cae86c8829b35ed4a66f9cbd57cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdc69587a08335b7e524ee80efe558f9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#afdc69587a08335b7e524ee80efe558f9">paginasValidas</a> [<a class="el" href="_gerenciador_memoria_virtual_8c.html#a430599efb8eb4dbaf44957ea7520516b">numeroDePaginas</a>]</td></tr>
+<tr class="separator:afdc69587a08335b7e524ee80efe558f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38dcfe5a026179277317aef893993403"><td class="memItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a38dcfe5a026179277317aef893993403">arquivoEnderecos</a></td></tr>
+<tr class="separator:a38dcfe5a026179277317aef893993403"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7541eff6d24c41997a4f300bbd764f1a"><td class="memItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a7541eff6d24c41997a4f300bbd764f1a">backing_storage</a></td></tr>
+<tr class="separator:a7541eff6d24c41997a4f300bbd764f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac95c068a71ba946684e1e80146fb1703"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#ac95c068a71ba946684e1e80146fb1703">total_cnt</a></td></tr>
+<tr class="separator:ac95c068a71ba946684e1e80146fb1703"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0f77ad3ea3c5209eadb40eb4da7b50b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#ac0f77ad3ea3c5209eadb40eb4da7b50b">falhaPaginaCNT</a></td></tr>
+<tr class="separator:ac0f77ad3ea3c5209eadb40eb4da7b50b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a33d457a91d156d19cc3702b3dc15cc"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_gerenciador_memoria_virtual_8c.html#a5a33d457a91d156d19cc3702b3dc15cc">perdaTLB_CNT</a></td></tr>
+<tr class="separator:a5a33d457a91d156d19cc3702b3dc15cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentação das macros</h2>
+<a id="a3e318258d1ed482c1dec7af6af8de30a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e318258d1ed482c1dec7af6af8de30a">&#9670;&nbsp;</a></span>ArquivoBackingStorage</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ArquivoBackingStorage&#160;&#160;&#160;&quot;BACKING_STORE.bin&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00036">36</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a6dbd13dc4e60003ff5bd55f45b36bbe3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dbd13dc4e60003ff5bd55f45b36bbe3">&#9670;&nbsp;</a></span>bitsOffset</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define bitsOffset&#160;&#160;&#160;8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00029">29</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="aaaffe1325aff6582a8a54cc1358997a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaffe1325aff6582a8a54cc1358997a6">&#9670;&nbsp;</a></span>bitsPagina</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define bitsPagina&#160;&#160;&#160;8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Definindo macros </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00027">27</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a446c6e1d8fa490a063f9944d3f7327a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a446c6e1d8fa490a063f9944d3f7327a1">&#9670;&nbsp;</a></span>bitsQuadro</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define bitsQuadro&#160;&#160;&#160;7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00028">28</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a430599efb8eb4dbaf44957ea7520516b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a430599efb8eb4dbaf44957ea7520516b">&#9670;&nbsp;</a></span>numeroDePaginas</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define numeroDePaginas&#160;&#160;&#160;(1 &lt;&lt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#aaaffe1325aff6582a8a54cc1358997a6">bitsPagina</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00033">33</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a6d0dd85408c06c9f93104af85ac75f3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d0dd85408c06c9f93104af85ac75f3a">&#9670;&nbsp;</a></span>numeroDeQuadros</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define numeroDeQuadros&#160;&#160;&#160;(1 &lt;&lt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#a446c6e1d8fa490a063f9944d3f7327a1">bitsQuadro</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00034">34</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="ad00a7d071c99501f1aa042005314da02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad00a7d071c99501f1aa042005314da02">&#9670;&nbsp;</a></span>retornaEnderecoFisico</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define retornaEnderecoFisico</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">quadro, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">offset&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;((numeroDoQuadro &lt;&lt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">bitsOffset</a>) | offset)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Definindo funções macros </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00041">41</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a4546f1d90fc85486963e6c553ef5dc44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4546f1d90fc85486963e6c553ef5dc44">&#9670;&nbsp;</a></span>retornaNumeroPagina</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define retornaNumeroPagina</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">endereco</td><td>)</td>
+          <td>&#160;&#160;&#160;((endereco &amp; ((1 &lt;&lt; (<a class="el" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">bitsOffset</a> + <a class="el" href="_gerenciador_memoria_virtual_8c.html#aaaffe1325aff6582a8a54cc1358997a6">bitsPagina</a>))- (1 &lt;&lt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">bitsOffset</a>))) &gt;&gt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">bitsOffset</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00042">42</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a6a7ec29604512fa8da4be4774fbabfb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a7ec29604512fa8da4be4774fbabfb3">&#9670;&nbsp;</a></span>retornaOffset</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define retornaOffset</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">endereco</td><td>)</td>
+          <td>&#160;&#160;&#160;(endereco &amp; ((1 &lt;&lt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">bitsOffset</a>) - 1))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00043">43</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a4fe823b0df0e2d6d8e2fe92a1c73c732"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fe823b0df0e2d6d8e2fe92a1c73c732">&#9670;&nbsp;</a></span>tamanhoMemoria</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define tamanhoMemoria&#160;&#160;&#160;(<a class="el" href="_gerenciador_memoria_virtual_8c.html#ade156b38dc36e86363564ead1082a358">tamanhoQuadro</a> * <a class="el" href="_gerenciador_memoria_virtual_8c.html#a6d0dd85408c06c9f93104af85ac75f3a">numeroDeQuadros</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00035">35</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a1ce599abee7f7df397d492781a5130ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ce599abee7f7df397d492781a5130ba">&#9670;&nbsp;</a></span>tamanhoPagina</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define tamanhoPagina&#160;&#160;&#160;(1 &lt;&lt; <a class="el" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">bitsOffset</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00031">31</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="ade156b38dc36e86363564ead1082a358"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade156b38dc36e86363564ead1082a358">&#9670;&nbsp;</a></span>tamanhoQuadro</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define tamanhoQuadro&#160;&#160;&#160;<a class="el" href="_gerenciador_memoria_virtual_8c.html#a1ce599abee7f7df397d492781a5130ba">tamanhoPagina</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00032">32</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a7d912cb9ffef9f5cfa5f78184508051d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d912cb9ffef9f5cfa5f78184508051d">&#9670;&nbsp;</a></span>tamanhoTLB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define tamanhoTLB&#160;&#160;&#160;16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00030">30</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação das funções</h2>
+<a id="a9bd01ea6bf901e7dc5e359d9dac89d5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bd01ea6bf901e7dc5e359d9dac89d5f">&#9670;&nbsp;</a></span>acessarMemoriaFisica()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char acessarMemoriaFisica </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>fisica</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>esta funcao é responsavel por retornar o valor do endereco fisico indicado na memoria </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00193">193</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_a9bd01ea6bf901e7dc5e359d9dac89d5f_icgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_a9bd01ea6bf901e7dc5e359d9dac89d5f_icgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_a9bd01ea6bf901e7dc5e359d9dac89d5f_icgraph" id="_gerenciador_memoria_virtual_8c_a9bd01ea6bf901e7dc5e359d9dac89d5f_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,275,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a321c5787d4bec95ef53f2c3bf45b732c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a321c5787d4bec95ef53f2c3bf45b732c">&#9670;&nbsp;</a></span>atualizaTLB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atualizaTLB </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>numeroDaPagina</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>numeroDoQuadro</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>esta funcao é responsavel por atualizar a TLB, ela usa o algoritmo FIFO para isso é igual ao numero da pagina indicado no parametro da funcao </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00127">127</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_a321c5787d4bec95ef53f2c3bf45b732c_icgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_a321c5787d4bec95ef53f2c3bf45b732c_icgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_a321c5787d4bec95ef53f2c3bf45b732c_icgraph" id="_gerenciador_memoria_virtual_8c_a321c5787d4bec95ef53f2c3bf45b732c_icgraph">
+<area shape="rect" title=" " alt="" coords="288,5,387,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a5d3275df1df68a436dbb750c68383347" title=" " alt="" coords="108,5,240,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8089d7bd7adc71a472afd081d8d77980"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8089d7bd7adc71a472afd081d8d77980">&#9670;&nbsp;</a></span>fecharArquivos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fecharArquivos </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>esta funcao é responsavel por fechar os arquivos que foram abertos para consulta </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00244">244</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_a8089d7bd7adc71a472afd081d8d77980_icgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_a8089d7bd7adc71a472afd081d8d77980_icgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_a8089d7bd7adc71a472afd081d8d77980_icgraph" id="_gerenciador_memoria_virtual_8c_a8089d7bd7adc71a472afd081d8d77980_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,228,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a692c1854dc41af028c966e9bf6bd55dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a692c1854dc41af028c966e9bf6bd55dd">&#9670;&nbsp;</a></span>imprimeTabelaDePaginas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void imprimeTabelaDePaginas </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>esta funcao é responsavel por realizar o comando -2 e -3 escrevendo as entradas da tabela de páginas, ou seja: caso o comando seja -2, vai escrever somente páginas com bit de presença ZERO =&gt; páginas não carregadas na memória principal caso o comando seja -3, vai escrever somente páginas com bit de presença UM =&gt; páginas carregas na memória principal </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00183">183</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_a692c1854dc41af028c966e9bf6bd55dd_icgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_a692c1854dc41af028c966e9bf6bd55dd_icgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_a692c1854dc41af028c966e9bf6bd55dd_icgraph" id="_gerenciador_memoria_virtual_8c_a692c1854dc41af028c966e9bf6bd55dd_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,295,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a755d598200bbb0b545de43669a5c87b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a755d598200bbb0b545de43669a5c87b7">&#9670;&nbsp;</a></span>imprimeTLB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void imprimeTLB </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>esta funcao é responsavel por realizar o comando -1, ou seja, ela imprime o conteúdo da TLB </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00139">139</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_a755d598200bbb0b545de43669a5c87b7_icgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_a755d598200bbb0b545de43669a5c87b7_icgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_a755d598200bbb0b545de43669a5c87b7_icgraph" id="_gerenciador_memoria_virtual_8c_a755d598200bbb0b545de43669a5c87b7_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,209,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adb39307e2d39c9342f4d24641115b7d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb39307e2d39c9342f4d24641115b7d7">&#9670;&nbsp;</a></span>iniciarArquivos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int iniciarArquivos </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>esta funcao é responsavel por iniciar os arquivos utilizados na execucao do sistema, verificar qual algoritmo foi escolhido, receber valor do quadro e iniciar o vetor paginasValidas com zero assim como proximoQuadroLivre e proximaTLBLivre </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00202">202</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_adb39307e2d39c9342f4d24641115b7d7_icgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_adb39307e2d39c9342f4d24641115b7d7_icgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_adb39307e2d39c9342f4d24641115b7d7_icgraph" id="_gerenciador_memoria_virtual_8c_adb39307e2d39c9342f4d24641115b7d7_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,227,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3c04138a5bfe5d72780bb7e82a18e627"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c04138a5bfe5d72780bb7e82a18e627">&#9670;&nbsp;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>esta funcao é a funcao principal, caso haja os comandos negativos no arquivo address de entrada, vai imprimir TLB se -1 e tabela de paginas se -2 ou -3, caso nao haja, vai chamar a funcao traduzirEndereco para iniciar a traducao do endereco logico para fisico, depois chama a acessarMemoriaFisica para pegar o valor na memoria do endereco fisico encontrado, a Resultados para mostrar os resultados encontrados e por fim a fecharArquivos para fechar os arquivos de consulta </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00267">267</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+<div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_a3c04138a5bfe5d72780bb7e82a18e627_cgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_a3c04138a5bfe5d72780bb7e82a18e627_cgraph" id="_gerenciador_memoria_virtual_8c_a3c04138a5bfe5d72780bb7e82a18e627_cgraph">
+<area shape="rect" title=" " alt="" coords="5,157,60,184"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a9bd01ea6bf901e7dc5e359d9dac89d5f" title=" " alt="" coords="118,5,285,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a8089d7bd7adc71a472afd081d8d77980" title=" " alt="" coords="141,56,261,83"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a692c1854dc41af028c966e9bf6bd55dd" title=" " alt="" coords="108,107,295,133"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a755d598200bbb0b545de43669a5c87b7" title=" " alt="" coords="151,157,252,184"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#adb39307e2d39c9342f4d24641115b7d7" title=" " alt="" coords="142,208,261,235"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a53945cfe26f52cf4680c442e6b4da3a5" title=" " alt="" coords="154,259,249,285"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a5d3275df1df68a436dbb750c68383347" title=" " alt="" coords="135,309,267,336"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a321c5787d4bec95ef53f2c3bf45b732c" title=" " alt="" coords="367,259,466,285"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a8ffe77409d2779235138170af6bd0a77" title=" " alt="" coords="343,309,491,336"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#af3f86f7d401f027560f2e7e4ca82d9bd" title=" " alt="" coords="369,360,464,387"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a51ddc5c8c73be499aee26e5d0a9ac59b" title=" " alt="" coords="539,309,701,336"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a51ddc5c8c73be499aee26e5d0a9ac59b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51ddc5c8c73be499aee26e5d0a9ac59b">&#9670;&nbsp;</a></span>pegaQuadroEscolhido()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t pegaQuadroEscolhido </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>pegaQuadroEscolhido e uma funcao que vai implementar o algoritmo FIFO </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00070">70</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_a51ddc5c8c73be499aee26e5d0a9ac59b_icgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_a51ddc5c8c73be499aee26e5d0a9ac59b_icgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_a51ddc5c8c73be499aee26e5d0a9ac59b_icgraph" id="_gerenciador_memoria_virtual_8c_a51ddc5c8c73be499aee26e5d0a9ac59b_icgraph">
+<area shape="rect" title=" " alt="" coords="484,5,647,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a8ffe77409d2779235138170af6bd0a77" title=" " alt="" coords="288,5,436,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a5d3275df1df68a436dbb750c68383347" title=" " alt="" coords="108,5,240,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a53945cfe26f52cf4680c442e6b4da3a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53945cfe26f52cf4680c442e6b4da3a5">&#9670;&nbsp;</a></span>Resultados()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Resultados </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>esta funcao é responsavel por imprimir os resultados finais calculados </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00256">256</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_a53945cfe26f52cf4680c442e6b4da3a5_icgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_a53945cfe26f52cf4680c442e6b4da3a5_icgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_a53945cfe26f52cf4680c442e6b4da3a5_icgraph" id="_gerenciador_memoria_virtual_8c_a53945cfe26f52cf4680c442e6b4da3a5_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,203,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5d3275df1df68a436dbb750c68383347"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d3275df1df68a436dbb750c68383347">&#9670;&nbsp;</a></span>traduzirEndereco()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t traduzirEndereco </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>logica</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>esta funcao é responsavel por fazer a traducao do endereco Logico para o endereco Fisico ela incrementa total_cnt, pega o numero da pagina chamando a funcao retornaNumeroPagina, pegar o offset com a funcao retornaOffset, verifica se nao ha nenhum elemento na TLB que seja valido e que tenha o numero da pagina indicado para incrementar a perda da TLB e lidar com a falha na pagina chamando a funcao trataFalhaDePagina, apos isso a TLB é atualizada e a funcao em questao retorna o endereco fisico encontrado </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00157">157</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+<div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_a5d3275df1df68a436dbb750c68383347_cgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_a5d3275df1df68a436dbb750c68383347_cgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_a5d3275df1df68a436dbb750c68383347_cgraph" id="_gerenciador_memoria_virtual_8c_a5d3275df1df68a436dbb750c68383347_cgraph">
+<area shape="rect" title=" " alt="" coords="5,56,137,83"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a321c5787d4bec95ef53f2c3bf45b732c" title=" " alt="" coords="210,5,309,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a8ffe77409d2779235138170af6bd0a77" title=" " alt="" coords="185,56,333,83"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#af3f86f7d401f027560f2e7e4ca82d9bd" title=" " alt="" coords="212,107,307,133"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a51ddc5c8c73be499aee26e5d0a9ac59b" title=" " alt="" coords="381,56,544,83"/>
+</map>
+</div>
+<div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_a5d3275df1df68a436dbb750c68383347_icgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_a5d3275df1df68a436dbb750c68383347_icgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_a5d3275df1df68a436dbb750c68383347_icgraph" id="_gerenciador_memoria_virtual_8c_a5d3275df1df68a436dbb750c68383347_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,240,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8ffe77409d2779235138170af6bd0a77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ffe77409d2779235138170af6bd0a77">&#9670;&nbsp;</a></span>trataFalhaDePagina()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void trataFalhaDePagina </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>numeroDaPagina</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>trataFalhaDePagina e uma funcao para lidar com as falhas que ocorrerao nas paginas, ela chama a funcao pegaQuadroEscolhido para salvar o escolhido na tabela de paginas e no mesmo indice que na tabela de paginas, no vetor de paginas validas ele seta com 1, representacao de boolean true, significa que a pagina é valida </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00092">92</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+<div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_a8ffe77409d2779235138170af6bd0a77_cgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_a8ffe77409d2779235138170af6bd0a77_cgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_a8ffe77409d2779235138170af6bd0a77_cgraph" id="_gerenciador_memoria_virtual_8c_a8ffe77409d2779235138170af6bd0a77_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,153,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a51ddc5c8c73be499aee26e5d0a9ac59b" title=" " alt="" coords="201,5,364,32"/>
+</map>
+</div>
+<div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_a8ffe77409d2779235138170af6bd0a77_icgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_a8ffe77409d2779235138170af6bd0a77_icgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_a8ffe77409d2779235138170af6bd0a77_icgraph" id="_gerenciador_memoria_virtual_8c_a8ffe77409d2779235138170af6bd0a77_icgraph">
+<area shape="rect" title=" " alt="" coords="288,5,436,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a5d3275df1df68a436dbb750c68383347" title=" " alt="" coords="108,5,240,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af3f86f7d401f027560f2e7e4ca82d9bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3f86f7d401f027560f2e7e4ca82d9bd">&#9670;&nbsp;</a></span>verificaTLB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int verificaTLB </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>numeroDaPagina</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>numeroDoQuadro</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>esta funcao percorre toda a TLB e é responsavel por verificar na TLB se pelo menos um elemento é valido e se a pagina dele é igual ao numero da pagina indicado no parametro da funcao </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00110">110</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="_gerenciador_memoria_virtual_8c_af3f86f7d401f027560f2e7e4ca82d9bd_icgraph.png" border="0" usemap="#_gerenciador_memoria_virtual_8c_af3f86f7d401f027560f2e7e4ca82d9bd_icgraph" alt=""/></div>
+<map name="_gerenciador_memoria_virtual_8c_af3f86f7d401f027560f2e7e4ca82d9bd_icgraph" id="_gerenciador_memoria_virtual_8c_af3f86f7d401f027560f2e7e4ca82d9bd_icgraph">
+<area shape="rect" title=" " alt="" coords="288,5,383,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a5d3275df1df68a436dbb750c68383347" title=" " alt="" coords="108,5,240,32"/>
+<area shape="rect" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação das variáveis</h2>
+<a id="a38dcfe5a026179277317aef893993403"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38dcfe5a026179277317aef893993403">&#9670;&nbsp;</a></span>arquivoEnderecos</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FILE* arquivoEnderecos</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Criando as variaveis que irao guardar os arquivos de entrada backing storage e address </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00060">60</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a7541eff6d24c41997a4f300bbd764f1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7541eff6d24c41997a4f300bbd764f1a">&#9670;&nbsp;</a></span>backing_storage</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FILE * backing_storage</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00060">60</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="ac0f77ad3ea3c5209eadb40eb4da7b50b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0f77ad3ea3c5209eadb40eb4da7b50b">&#9670;&nbsp;</a></span>falhaPaginaCNT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t falhaPaginaCNT</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00065">65</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a5bbee2cc69399782e9d690200cf5f561"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bbee2cc69399782e9d690200cf5f561">&#9670;&nbsp;</a></span>memoria</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t memoria[<a class="el" href="_gerenciador_memoria_virtual_8c.html#a4fe823b0df0e2d6d8e2fe92a1c73c732">tamanhoMemoria</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Criando vetores para a Memoria, Tabela de Paginas e Paginas Validas </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00053">53</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="afdc69587a08335b7e524ee80efe558f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdc69587a08335b7e524ee80efe558f9">&#9670;&nbsp;</a></span>paginasValidas</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t paginasValidas[<a class="el" href="_gerenciador_memoria_virtual_8c.html#a430599efb8eb4dbaf44957ea7520516b">numeroDePaginas</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00055">55</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a5a33d457a91d156d19cc3702b3dc15cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a33d457a91d156d19cc3702b3dc15cc">&#9670;&nbsp;</a></span>perdaTLB_CNT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t perdaTLB_CNT</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00065">65</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a67c8cae86c8829b35ed4a66f9cbd57cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67c8cae86c8829b35ed4a66f9cbd57cd">&#9670;&nbsp;</a></span>proximaTLBLivre</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t proximaTLBLivre</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00054">54</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="aaddc68069193a83dc58edfd10a9b2a06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaddc68069193a83dc58edfd10a9b2a06">&#9670;&nbsp;</a></span>proximoQuadroLivre</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t proximoQuadroLivre</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00054">54</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="acaab363c80c65a22ac7622a800006f8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaab363c80c65a22ac7622a800006f8c">&#9670;&nbsp;</a></span>tabelaPaginas</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t tabelaPaginas[<a class="el" href="_gerenciador_memoria_virtual_8c.html#a430599efb8eb4dbaf44957ea7520516b">numeroDePaginas</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00054">54</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a241b2be5a9f43dcbc54b71071329e87d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a241b2be5a9f43dcbc54b71071329e87d">&#9670;&nbsp;</a></span>TLB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_par.html">Par</a> TLB[<a class="el" href="_gerenciador_memoria_virtual_8c.html#a7d912cb9ffef9f5cfa5f78184508051d">tamanhoTLB</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Criando a TLB </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00048">48</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="ac95c068a71ba946684e1e80146fb1703"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac95c068a71ba946684e1e80146fb1703">&#9670;&nbsp;</a></span>total_cnt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t total_cnt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Criando variaveis auxiliares </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00065">65</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado em Domingo, 4 de Dezembro de 2022 23:45:13 para Projetando um gerenciador de memória virtual - Por Jennifer do Prado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

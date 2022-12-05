@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projetando um gerenciador de memória virtual - Por Jennifer do Prado: Código-Fonte de GerenciadorMemoriaVirtual.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projetando um gerenciador de memória virtual - Por Jennifer do Prado
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">GerenciadorMemoriaVirtual.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_gerenciador_memoria_virtual_8c.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct_par.html">   19</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct_par.html#a3d9ae72d3a04a91ad7518093d1710375">   20</a></span>&#160;    uint32_t pagina, <a class="code" href="struct_par.html#a3d9ae72d3a04a91ad7518093d1710375">quadro</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="struct_par.html#a2400310fb8380212cf84c64cdb7a8678">   21</a></span>&#160;    uint8_t <a class="code" href="struct_par.html#a2400310fb8380212cf84c64cdb7a8678">valido</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;} <a class="code" href="struct_par.html">Par</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#aaaffe1325aff6582a8a54cc1358997a6">   27</a></span>&#160;<span class="preprocessor">#define bitsPagina 8</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a446c6e1d8fa490a063f9944d3f7327a1">   28</a></span>&#160;<span class="preprocessor">#define bitsQuadro 7</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a6dbd13dc4e60003ff5bd55f45b36bbe3">   29</a></span>&#160;<span class="preprocessor">#define bitsOffset 8</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a7d912cb9ffef9f5cfa5f78184508051d">   30</a></span>&#160;<span class="preprocessor">#define tamanhoTLB 16</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a1ce599abee7f7df397d492781a5130ba">   31</a></span>&#160;<span class="preprocessor">#define tamanhoPagina (1 &lt;&lt; bitsOffset)</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#ade156b38dc36e86363564ead1082a358">   32</a></span>&#160;<span class="preprocessor">#define tamanhoQuadro tamanhoPagina</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a430599efb8eb4dbaf44957ea7520516b">   33</a></span>&#160;<span class="preprocessor">#define numeroDePaginas (1 &lt;&lt; bitsPagina)</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a6d0dd85408c06c9f93104af85ac75f3a">   34</a></span>&#160;<span class="preprocessor">#define numeroDeQuadros (1 &lt;&lt; bitsQuadro)</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a4fe823b0df0e2d6d8e2fe92a1c73c732">   35</a></span>&#160;<span class="preprocessor">#define tamanhoMemoria (tamanhoQuadro * numeroDeQuadros)</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a3e318258d1ed482c1dec7af6af8de30a">   36</a></span>&#160;<span class="preprocessor">#define ArquivoBackingStorage &quot;BACKING_STORE.bin&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#ad00a7d071c99501f1aa042005314da02">   41</a></span>&#160;<span class="preprocessor">#define retornaEnderecoFisico(quadro, offset) ((numeroDoQuadro &lt;&lt; bitsOffset) | offset)</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a4546f1d90fc85486963e6c553ef5dc44">   42</a></span>&#160;<span class="preprocessor">#define retornaNumeroPagina(endereco) ((endereco &amp; ((1 &lt;&lt; (bitsOffset + bitsPagina))- (1 &lt;&lt; bitsOffset))) &gt;&gt; bitsOffset)</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a6a7ec29604512fa8da4be4774fbabfb3">   43</a></span>&#160;<span class="preprocessor">#define retornaOffset(endereco) (endereco &amp; ((1 &lt;&lt; bitsOffset) - 1))</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d">   48</a></span>&#160;<a class="code" href="struct_par.html">Par</a> <a class="code" href="_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d">TLB</a>[<a class="code" href="_gerenciador_memoria_virtual_8c.html#a7d912cb9ffef9f5cfa5f78184508051d">tamanhoTLB</a>];</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a5bbee2cc69399782e9d690200cf5f561">   53</a></span>&#160;int8_t <a class="code" href="_gerenciador_memoria_virtual_8c.html#a5bbee2cc69399782e9d690200cf5f561">memoria</a>[<a class="code" href="_gerenciador_memoria_virtual_8c.html#a4fe823b0df0e2d6d8e2fe92a1c73c732">tamanhoMemoria</a>];</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#acaab363c80c65a22ac7622a800006f8c">   54</a></span>&#160;uint32_t <a class="code" href="_gerenciador_memoria_virtual_8c.html#acaab363c80c65a22ac7622a800006f8c">tabelaPaginas</a>[<a class="code" href="_gerenciador_memoria_virtual_8c.html#a430599efb8eb4dbaf44957ea7520516b">numeroDePaginas</a>], <a class="code" href="_gerenciador_memoria_virtual_8c.html#aaddc68069193a83dc58edfd10a9b2a06">proximoQuadroLivre</a>, <a class="code" href="_gerenciador_memoria_virtual_8c.html#a67c8cae86c8829b35ed4a66f9cbd57cd">proximaTLBLivre</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#afdc69587a08335b7e524ee80efe558f9">   55</a></span>&#160;uint8_t <a class="code" href="_gerenciador_memoria_virtual_8c.html#afdc69587a08335b7e524ee80efe558f9">paginasValidas</a>[<a class="code" href="_gerenciador_memoria_virtual_8c.html#a430599efb8eb4dbaf44957ea7520516b">numeroDePaginas</a>];</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a7541eff6d24c41997a4f300bbd764f1a">   60</a></span>&#160;FILE *<a class="code" href="_gerenciador_memoria_virtual_8c.html#a38dcfe5a026179277317aef893993403">arquivoEnderecos</a>, *<a class="code" href="_gerenciador_memoria_virtual_8c.html#a7541eff6d24c41997a4f300bbd764f1a">backing_storage</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#ac95c068a71ba946684e1e80146fb1703">   65</a></span>&#160;uint32_t <a class="code" href="_gerenciador_memoria_virtual_8c.html#ac95c068a71ba946684e1e80146fb1703">total_cnt</a>, <a class="code" href="_gerenciador_memoria_virtual_8c.html#ac0f77ad3ea3c5209eadb40eb4da7b50b">falhaPaginaCNT</a>, <a class="code" href="_gerenciador_memoria_virtual_8c.html#a5a33d457a91d156d19cc3702b3dc15cc">perdaTLB_CNT</a>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a51ddc5c8c73be499aee26e5d0a9ac59b">   70</a></span>&#160;uint32_t <a class="code" href="_gerenciador_memoria_virtual_8c.html#a51ddc5c8c73be499aee26e5d0a9ac59b">pegaQuadroEscolhido</a>() {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="_gerenciador_memoria_virtual_8c.html#aaddc68069193a83dc58edfd10a9b2a06">proximoQuadroLivre</a> &lt; <a class="code" href="_gerenciador_memoria_virtual_8c.html#a6d0dd85408c06c9f93104af85ac75f3a">numeroDeQuadros</a>) </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="_gerenciador_memoria_virtual_8c.html#aaddc68069193a83dc58edfd10a9b2a06">proximoQuadroLivre</a>++;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    uint32_t escolhido = (<a class="code" href="_gerenciador_memoria_virtual_8c.html#aaddc68069193a83dc58edfd10a9b2a06">proximoQuadroLivre</a>++) % <a class="code" href="_gerenciador_memoria_virtual_8c.html#a6d0dd85408c06c9f93104af85ac75f3a">numeroDeQuadros</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">size_t</span> i = 0; i != <a class="code" href="_gerenciador_memoria_virtual_8c.html#a430599efb8eb4dbaf44957ea7520516b">numeroDePaginas</a>; ++i){</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="_gerenciador_memoria_virtual_8c.html#afdc69587a08335b7e524ee80efe558f9">paginasValidas</a>[i] &amp;&amp; <a class="code" href="_gerenciador_memoria_virtual_8c.html#acaab363c80c65a22ac7622a800006f8c">tabelaPaginas</a>[i] == escolhido) {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <a class="code" href="_gerenciador_memoria_virtual_8c.html#afdc69587a08335b7e524ee80efe558f9">paginasValidas</a>[i] = 0;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> escolhido;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a8ffe77409d2779235138170af6bd0a77">   92</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_gerenciador_memoria_virtual_8c.html#a8ffe77409d2779235138170af6bd0a77">trataFalhaDePagina</a>(uint32_t numeroDaPagina) {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="_gerenciador_memoria_virtual_8c.html#acaab363c80c65a22ac7622a800006f8c">tabelaPaginas</a>[numeroDaPagina] = <a class="code" href="_gerenciador_memoria_virtual_8c.html#a51ddc5c8c73be499aee26e5d0a9ac59b">pegaQuadroEscolhido</a>();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    fseek(<a class="code" href="_gerenciador_memoria_virtual_8c.html#a7541eff6d24c41997a4f300bbd764f1a">backing_storage</a>, numeroDaPagina * <a class="code" href="_gerenciador_memoria_virtual_8c.html#a1ce599abee7f7df397d492781a5130ba">tamanhoPagina</a>, SEEK_SET);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    fread(<a class="code" href="_gerenciador_memoria_virtual_8c.html#a5bbee2cc69399782e9d690200cf5f561">memoria</a> + <a class="code" href="_gerenciador_memoria_virtual_8c.html#acaab363c80c65a22ac7622a800006f8c">tabelaPaginas</a>[numeroDaPagina] * <a class="code" href="_gerenciador_memoria_virtual_8c.html#a1ce599abee7f7df397d492781a5130ba">tamanhoPagina</a>, <span class="keyword">sizeof</span>(int8_t), <a class="code" href="_gerenciador_memoria_virtual_8c.html#a1ce599abee7f7df397d492781a5130ba">tamanhoPagina</a>, <a class="code" href="_gerenciador_memoria_virtual_8c.html#a7541eff6d24c41997a4f300bbd764f1a">backing_storage</a>);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="_gerenciador_memoria_virtual_8c.html#afdc69587a08335b7e524ee80efe558f9">paginasValidas</a>[numeroDaPagina] = 1;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    ++<a class="code" href="_gerenciador_memoria_virtual_8c.html#ac0f77ad3ea3c5209eadb40eb4da7b50b">falhaPaginaCNT</a>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#af3f86f7d401f027560f2e7e4ca82d9bd">  110</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="_gerenciador_memoria_virtual_8c.html#af3f86f7d401f027560f2e7e4ca82d9bd">verificaTLB</a>(uint32_t numeroDaPagina, uint32_t *numeroDoQuadro) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">size_t</span> i = 0; i != <a class="code" href="_gerenciador_memoria_virtual_8c.html#a7d912cb9ffef9f5cfa5f78184508051d">tamanhoTLB</a>; ++i) {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d">TLB</a>[i].valido &amp;&amp; <a class="code" href="_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d">TLB</a>[i].pagina == numeroDaPagina) {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            *numeroDoQuadro = <a class="code" href="_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d">TLB</a>[i].<a class="code" href="struct_par.html#a3d9ae72d3a04a91ad7518093d1710375">quadro</a>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a321c5787d4bec95ef53f2c3bf45b732c">  127</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_gerenciador_memoria_virtual_8c.html#a321c5787d4bec95ef53f2c3bf45b732c">atualizaTLB</a>(uint32_t numeroDaPagina, uint32_t numeroDoQuadro) {</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">size_t</span> escolhido = <a class="code" href="_gerenciador_memoria_virtual_8c.html#a67c8cae86c8829b35ed4a66f9cbd57cd">proximaTLBLivre</a> % <a class="code" href="_gerenciador_memoria_virtual_8c.html#a7d912cb9ffef9f5cfa5f78184508051d">tamanhoTLB</a>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="_gerenciador_memoria_virtual_8c.html#a67c8cae86c8829b35ed4a66f9cbd57cd">proximaTLBLivre</a> = (<a class="code" href="_gerenciador_memoria_virtual_8c.html#a67c8cae86c8829b35ed4a66f9cbd57cd">proximaTLBLivre</a> + 1) % <a class="code" href="_gerenciador_memoria_virtual_8c.html#a7d912cb9ffef9f5cfa5f78184508051d">tamanhoTLB</a>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <a class="code" href="_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d">TLB</a>[escolhido].<a class="code" href="struct_par.html#a2400310fb8380212cf84c64cdb7a8678">valido</a> = 1;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <a class="code" href="_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d">TLB</a>[escolhido].<a class="code" href="struct_par.html#ae923bc31256f79d28adfbabe7fcda274">pagina</a> = numeroDaPagina, <a class="code" href="_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d">TLB</a>[escolhido].<a class="code" href="struct_par.html#a3d9ae72d3a04a91ad7518093d1710375">quadro</a> = numeroDoQuadro;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;}</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a755d598200bbb0b545de43669a5c87b7">  139</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_gerenciador_memoria_virtual_8c.html#a755d598200bbb0b545de43669a5c87b7">imprimeTLB</a>() {</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i &lt; <a class="code" href="_gerenciador_memoria_virtual_8c.html#a7d912cb9ffef9f5cfa5f78184508051d">tamanhoTLB</a>; i++){</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        printf(<span class="stringliteral">&quot;TLB[%d] -&gt;&quot;</span>, i);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        printf(<span class="stringliteral">&quot;\tvalido: %d&quot;</span>, <a class="code" href="_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d">TLB</a>[i].valido);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        printf(<span class="stringliteral">&quot;\tpagina: %d&quot;</span>, <a class="code" href="_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d">TLB</a>[i].pagina);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        printf(<span class="stringliteral">&quot;\tquadro: %d\n&quot;</span>, <a class="code" href="_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d">TLB</a>[i].quadro);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    }</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;}</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a5d3275df1df68a436dbb750c68383347">  157</a></span>&#160;uint32_t <a class="code" href="_gerenciador_memoria_virtual_8c.html#a5d3275df1df68a436dbb750c68383347">traduzirEndereco</a>(uint32_t logica) {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    ++<a class="code" href="_gerenciador_memoria_virtual_8c.html#ac95c068a71ba946684e1e80146fb1703">total_cnt</a>;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    uint32_t numeroDaPagina, offset, numeroDoQuadro;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    numeroDaPagina = <a class="code" href="_gerenciador_memoria_virtual_8c.html#a4546f1d90fc85486963e6c553ef5dc44">retornaNumeroPagina</a>(logica);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    offset = <a class="code" href="_gerenciador_memoria_virtual_8c.html#a6a7ec29604512fa8da4be4774fbabfb3">retornaOffset</a>(logica);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="_gerenciador_memoria_virtual_8c.html#af3f86f7d401f027560f2e7e4ca82d9bd">verificaTLB</a>(numeroDaPagina, &amp;numeroDoQuadro)) {   </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        ++<a class="code" href="_gerenciador_memoria_virtual_8c.html#a5a33d457a91d156d19cc3702b3dc15cc">perdaTLB_CNT</a>;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="_gerenciador_memoria_virtual_8c.html#afdc69587a08335b7e524ee80efe558f9">paginasValidas</a>[numeroDaPagina] == 0) </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            <a class="code" href="_gerenciador_memoria_virtual_8c.html#a8ffe77409d2779235138170af6bd0a77">trataFalhaDePagina</a>(numeroDaPagina);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        numeroDoQuadro = <a class="code" href="_gerenciador_memoria_virtual_8c.html#acaab363c80c65a22ac7622a800006f8c">tabelaPaginas</a>[numeroDaPagina];</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <a class="code" href="_gerenciador_memoria_virtual_8c.html#a321c5787d4bec95ef53f2c3bf45b732c">atualizaTLB</a>(numeroDaPagina, numeroDoQuadro);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    }</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_gerenciador_memoria_virtual_8c.html#ad00a7d071c99501f1aa042005314da02">retornaEnderecoFisico</a>(numeroDoQuadro, offset);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;}</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a692c1854dc41af028c966e9bf6bd55dd">  183</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_gerenciador_memoria_virtual_8c.html#a692c1854dc41af028c966e9bf6bd55dd">imprimeTabelaDePaginas</a>(<span class="keywordtype">int</span> bit){</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    </div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i=0; i &lt; <a class="code" href="_gerenciador_memoria_virtual_8c.html#a430599efb8eb4dbaf44957ea7520516b">numeroDePaginas</a>; i++){</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="keywordflow">if</span>((<a class="code" href="_gerenciador_memoria_virtual_8c.html#afdc69587a08335b7e524ee80efe558f9">paginasValidas</a>[i] == 0 &amp;&amp; bit == 0) || (<a class="code" href="_gerenciador_memoria_virtual_8c.html#afdc69587a08335b7e524ee80efe558f9">paginasValidas</a>[i] == 1 &amp;&amp; bit == 1))</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            printf(<span class="stringliteral">&quot;TabelaDePagina[%d]:\tPagina %d\n&quot;</span>, i, <a class="code" href="_gerenciador_memoria_virtual_8c.html#acaab363c80c65a22ac7622a800006f8c">tabelaPaginas</a>[i]); </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    }</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;}</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a9bd01ea6bf901e7dc5e359d9dac89d5f">  193</a></span>&#160;<span class="keywordtype">char</span> <a class="code" href="_gerenciador_memoria_virtual_8c.html#a9bd01ea6bf901e7dc5e359d9dac89d5f">acessarMemoriaFisica</a>(uint32_t fisica) {</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="_gerenciador_memoria_virtual_8c.html#a5bbee2cc69399782e9d690200cf5f561">memoria</a>[fisica];</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;}</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#adb39307e2d39c9342f4d24641115b7d7">  202</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="_gerenciador_memoria_virtual_8c.html#adb39307e2d39c9342f4d24641115b7d7">iniciarArquivos</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <a class="code" href="_gerenciador_memoria_virtual_8c.html#a7541eff6d24c41997a4f300bbd764f1a">backing_storage</a> = fopen(<a class="code" href="_gerenciador_memoria_virtual_8c.html#a3e318258d1ed482c1dec7af6af8de30a">ArquivoBackingStorage</a>, <span class="stringliteral">&quot;rb&quot;</span>);</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="_gerenciador_memoria_virtual_8c.html#a7541eff6d24c41997a4f300bbd764f1a">backing_storage</a> == NULL) {</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        printf(<span class="stringliteral">&quot;Não é possível abrir o arquivo BackingStorage: %s\n&quot;</span>, <a class="code" href="_gerenciador_memoria_virtual_8c.html#a3e318258d1ed482c1dec7af6af8de30a">ArquivoBackingStorage</a>);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    }</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <a class="code" href="_gerenciador_memoria_virtual_8c.html#a38dcfe5a026179277317aef893993403">arquivoEnderecos</a> = fopen(argv[1], <span class="stringliteral">&quot;r&quot;</span>);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="_gerenciador_memoria_virtual_8c.html#a38dcfe5a026179277317aef893993403">arquivoEnderecos</a> == NULL) {</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        printf(<span class="stringliteral">&quot;Não é possível abrir o arquivo address: %s\n&quot;</span>, argv[1]);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        <span class="keywordflow">return</span> -2;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    }</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordflow">if</span>(argv[2] == NULL || argv[3] == NULL){</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        printf(<span class="stringliteral">&quot;\nErro!!! Quadro não informado ou Algoritmo não escolhido!\n&quot;</span>);</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <span class="keywordflow">return</span> -3;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    }</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordflow">if</span>(strcmp(argv[3],<span class="stringliteral">&quot;FIFO&quot;</span>) == 0) </div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        printf(<span class="stringliteral">&quot;\n\t\t\tAlgoritmo FIFO\n\n\n&quot;</span>);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(strcmp(argv[3],<span class="stringliteral">&quot;LRU&quot;</span>) == 0)</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        printf(<span class="stringliteral">&quot;\n\t\t\tAlgoritmo LRU\n\n\n&quot;</span>);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        printf(<span class="stringliteral">&quot;\nErro!!! Algoritmo Inválido\n&quot;</span>);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        <span class="keywordflow">return</span> -4;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    }</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    memset(<a class="code" href="_gerenciador_memoria_virtual_8c.html#afdc69587a08335b7e524ee80efe558f9">paginasValidas</a>, 0, <span class="keyword">sizeof</span>(uint8_t) * <a class="code" href="_gerenciador_memoria_virtual_8c.html#a430599efb8eb4dbaf44957ea7520516b">numeroDePaginas</a>);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <a class="code" href="_gerenciador_memoria_virtual_8c.html#aaddc68069193a83dc58edfd10a9b2a06">proximoQuadroLivre</a> = <a class="code" href="_gerenciador_memoria_virtual_8c.html#a67c8cae86c8829b35ed4a66f9cbd57cd">proximaTLBLivre</a> = 0;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;}</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160; </div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
+<div class="line"><a name="l00244"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a8089d7bd7adc71a472afd081d8d77980">  244</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_gerenciador_memoria_virtual_8c.html#a8089d7bd7adc71a472afd081d8d77980">fecharArquivos</a>() {</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="_gerenciador_memoria_virtual_8c.html#a38dcfe5a026179277317aef893993403">arquivoEnderecos</a>) </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        fclose(<a class="code" href="_gerenciador_memoria_virtual_8c.html#a38dcfe5a026179277317aef893993403">arquivoEnderecos</a>);</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="_gerenciador_memoria_virtual_8c.html#a7541eff6d24c41997a4f300bbd764f1a">backing_storage</a>) </div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        fclose(<a class="code" href="_gerenciador_memoria_virtual_8c.html#a7541eff6d24c41997a4f300bbd764f1a">backing_storage</a>);</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160; </div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;}</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160; </div>
+<div class="line"><a name="l00256"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a53945cfe26f52cf4680c442e6b4da3a5">  256</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_gerenciador_memoria_virtual_8c.html#a53945cfe26f52cf4680c442e6b4da3a5">Resultados</a>() {</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    printf(<span class="stringliteral">&quot;Porcentagem de falha de página: %.2f%%\n&quot;</span>, (<span class="keywordtype">float</span>)<a class="code" href="_gerenciador_memoria_virtual_8c.html#ac0f77ad3ea3c5209eadb40eb4da7b50b">falhaPaginaCNT</a> / <a class="code" href="_gerenciador_memoria_virtual_8c.html#ac95c068a71ba946684e1e80146fb1703">total_cnt</a> * 100);</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    printf(<span class="stringliteral">&quot;Porcentagem de sucesso na TLB: %.2f%%\n&quot;</span>, (<span class="keywordtype">float</span>)(<a class="code" href="_gerenciador_memoria_virtual_8c.html#ac95c068a71ba946684e1e80146fb1703">total_cnt</a> - <a class="code" href="_gerenciador_memoria_virtual_8c.html#a5a33d457a91d156d19cc3702b3dc15cc">perdaTLB_CNT</a>) / <a class="code" href="_gerenciador_memoria_virtual_8c.html#ac95c068a71ba946684e1e80146fb1703">total_cnt</a> * 100);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;}</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
+<div class="line"><a name="l00267"></a><span class="lineno"><a class="line" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">  267</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="keywordtype">char</span> line[8];</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keywordtype">int</span> valorEntrada;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="_gerenciador_memoria_virtual_8c.html#adb39307e2d39c9342f4d24641115b7d7">iniciarArquivos</a>(argc, argv) != 0) {</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <a class="code" href="_gerenciador_memoria_virtual_8c.html#a8089d7bd7adc71a472afd081d8d77980">fecharArquivos</a>();</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160; </div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    }</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160; </div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    <span class="keywordflow">while</span>(fgets(line, 8, <a class="code" href="_gerenciador_memoria_virtual_8c.html#a38dcfe5a026179277317aef893993403">arquivoEnderecos</a>)) {</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        uint32_t logica, fisica;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        int8_t valor;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160; </div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        <span class="keywordflow">if</span>(line[0] != <span class="charliteral">&#39;\n&#39;</span>){</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            printf(<span class="stringliteral">&quot;---------------------------------------------------------------------\n&quot;</span>);</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            </div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            sscanf(line, <span class="stringliteral">&quot;%d&quot;</span>, &amp;valorEntrada);</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            sscanf(line, <span class="stringliteral">&quot;%u&quot;</span>, &amp;logica);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160; </div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            printf(<span class="stringliteral">&quot;Entrada : %d\n\n&quot;</span>, valorEntrada);</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;            </div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            <span class="keywordflow">if</span>(valorEntrada == -1){</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                <a class="code" href="_gerenciador_memoria_virtual_8c.html#a755d598200bbb0b545de43669a5c87b7">imprimeTLB</a>();</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            }</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(valorEntrada == -2){</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                <a class="code" href="_gerenciador_memoria_virtual_8c.html#a692c1854dc41af028c966e9bf6bd55dd">imprimeTabelaDePaginas</a>(0);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            }</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(valorEntrada == -3){</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                <a class="code" href="_gerenciador_memoria_virtual_8c.html#a692c1854dc41af028c966e9bf6bd55dd">imprimeTabelaDePaginas</a>(1);</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            }</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                fisica = <a class="code" href="_gerenciador_memoria_virtual_8c.html#a5d3275df1df68a436dbb750c68383347">traduzirEndereco</a>(logica);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                valor = <a class="code" href="_gerenciador_memoria_virtual_8c.html#a9bd01ea6bf901e7dc5e359d9dac89d5f">acessarMemoriaFisica</a>(fisica);</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160; </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                printf(<span class="stringliteral">&quot;Endereco logico: %u \nEndereco fisico: %u \nValor do byte armazenado no endereço físico traduzido: %d\n&quot;</span>, logica, fisica, valor);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;            }</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        }</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    }</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    printf(<span class="stringliteral">&quot;---------------------------------------------------------------------\n\t\t\t\tESTATISTICAS\n\n&quot;</span>);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <a class="code" href="_gerenciador_memoria_virtual_8c.html#a53945cfe26f52cf4680c442e6b4da3a5">Resultados</a>();</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <a class="code" href="_gerenciador_memoria_virtual_8c.html#a8089d7bd7adc71a472afd081d8d77980">fecharArquivos</a>();</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a53945cfe26f52cf4680c442e6b4da3a5"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a53945cfe26f52cf4680c442e6b4da3a5">Resultados</a></div><div class="ttdeci">void Resultados()</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00256">GerenciadorMemoriaVirtual.c:256</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_aaddc68069193a83dc58edfd10a9b2a06"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#aaddc68069193a83dc58edfd10a9b2a06">proximoQuadroLivre</a></div><div class="ttdeci">uint32_t proximoQuadroLivre</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00054">GerenciadorMemoriaVirtual.c:54</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a692c1854dc41af028c966e9bf6bd55dd"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a692c1854dc41af028c966e9bf6bd55dd">imprimeTabelaDePaginas</a></div><div class="ttdeci">void imprimeTabelaDePaginas(int bit)</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00183">GerenciadorMemoriaVirtual.c:183</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a38dcfe5a026179277317aef893993403"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a38dcfe5a026179277317aef893993403">arquivoEnderecos</a></div><div class="ttdeci">FILE * arquivoEnderecos</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00060">GerenciadorMemoriaVirtual.c:60</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a8089d7bd7adc71a472afd081d8d77980"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a8089d7bd7adc71a472afd081d8d77980">fecharArquivos</a></div><div class="ttdeci">void fecharArquivos()</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00244">GerenciadorMemoriaVirtual.c:244</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a5d3275df1df68a436dbb750c68383347"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a5d3275df1df68a436dbb750c68383347">traduzirEndereco</a></div><div class="ttdeci">uint32_t traduzirEndereco(uint32_t logica)</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00157">GerenciadorMemoriaVirtual.c:157</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a6a7ec29604512fa8da4be4774fbabfb3"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a6a7ec29604512fa8da4be4774fbabfb3">retornaOffset</a></div><div class="ttdeci">#define retornaOffset(endereco)</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00043">GerenciadorMemoriaVirtual.c:43</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_adb39307e2d39c9342f4d24641115b7d7"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#adb39307e2d39c9342f4d24641115b7d7">iniciarArquivos</a></div><div class="ttdeci">int iniciarArquivos(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00202">GerenciadorMemoriaVirtual.c:202</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a4546f1d90fc85486963e6c553ef5dc44"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a4546f1d90fc85486963e6c553ef5dc44">retornaNumeroPagina</a></div><div class="ttdeci">#define retornaNumeroPagina(endereco)</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00042">GerenciadorMemoriaVirtual.c:42</a></div></div>
+<div class="ttc" id="astruct_par_html"><div class="ttname"><a href="struct_par.html">Par</a></div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00019">GerenciadorMemoriaVirtual.c:19</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_ac0f77ad3ea3c5209eadb40eb4da7b50b"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#ac0f77ad3ea3c5209eadb40eb4da7b50b">falhaPaginaCNT</a></div><div class="ttdeci">uint32_t falhaPaginaCNT</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00065">GerenciadorMemoriaVirtual.c:65</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a3e318258d1ed482c1dec7af6af8de30a"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a3e318258d1ed482c1dec7af6af8de30a">ArquivoBackingStorage</a></div><div class="ttdeci">#define ArquivoBackingStorage</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00036">GerenciadorMemoriaVirtual.c:36</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a321c5787d4bec95ef53f2c3bf45b732c"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a321c5787d4bec95ef53f2c3bf45b732c">atualizaTLB</a></div><div class="ttdeci">void atualizaTLB(uint32_t numeroDaPagina, uint32_t numeroDoQuadro)</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00127">GerenciadorMemoriaVirtual.c:127</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a67c8cae86c8829b35ed4a66f9cbd57cd"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a67c8cae86c8829b35ed4a66f9cbd57cd">proximaTLBLivre</a></div><div class="ttdeci">uint32_t proximaTLBLivre</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00054">GerenciadorMemoriaVirtual.c:54</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_acaab363c80c65a22ac7622a800006f8c"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#acaab363c80c65a22ac7622a800006f8c">tabelaPaginas</a></div><div class="ttdeci">uint32_t tabelaPaginas[numeroDePaginas]</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00054">GerenciadorMemoriaVirtual.c:54</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a241b2be5a9f43dcbc54b71071329e87d"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d">TLB</a></div><div class="ttdeci">Par TLB[tamanhoTLB]</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00048">GerenciadorMemoriaVirtual.c:48</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a9bd01ea6bf901e7dc5e359d9dac89d5f"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a9bd01ea6bf901e7dc5e359d9dac89d5f">acessarMemoriaFisica</a></div><div class="ttdeci">char acessarMemoriaFisica(uint32_t fisica)</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00193">GerenciadorMemoriaVirtual.c:193</a></div></div>
+<div class="ttc" id="astruct_par_html_ae923bc31256f79d28adfbabe7fcda274"><div class="ttname"><a href="struct_par.html#ae923bc31256f79d28adfbabe7fcda274">Par::pagina</a></div><div class="ttdeci">uint32_t pagina</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00020">GerenciadorMemoriaVirtual.c:20</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a7d912cb9ffef9f5cfa5f78184508051d"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a7d912cb9ffef9f5cfa5f78184508051d">tamanhoTLB</a></div><div class="ttdeci">#define tamanhoTLB</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00030">GerenciadorMemoriaVirtual.c:30</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a5bbee2cc69399782e9d690200cf5f561"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a5bbee2cc69399782e9d690200cf5f561">memoria</a></div><div class="ttdeci">int8_t memoria[tamanhoMemoria]</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00053">GerenciadorMemoriaVirtual.c:53</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_ac95c068a71ba946684e1e80146fb1703"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#ac95c068a71ba946684e1e80146fb1703">total_cnt</a></div><div class="ttdeci">uint32_t total_cnt</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00065">GerenciadorMemoriaVirtual.c:65</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a1ce599abee7f7df397d492781a5130ba"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a1ce599abee7f7df397d492781a5130ba">tamanhoPagina</a></div><div class="ttdeci">#define tamanhoPagina</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00031">GerenciadorMemoriaVirtual.c:31</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a5a33d457a91d156d19cc3702b3dc15cc"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a5a33d457a91d156d19cc3702b3dc15cc">perdaTLB_CNT</a></div><div class="ttdeci">uint32_t perdaTLB_CNT</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00065">GerenciadorMemoriaVirtual.c:65</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_ad00a7d071c99501f1aa042005314da02"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#ad00a7d071c99501f1aa042005314da02">retornaEnderecoFisico</a></div><div class="ttdeci">#define retornaEnderecoFisico(quadro, offset)</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00041">GerenciadorMemoriaVirtual.c:41</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a4fe823b0df0e2d6d8e2fe92a1c73c732"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a4fe823b0df0e2d6d8e2fe92a1c73c732">tamanhoMemoria</a></div><div class="ttdeci">#define tamanhoMemoria</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00035">GerenciadorMemoriaVirtual.c:35</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a51ddc5c8c73be499aee26e5d0a9ac59b"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a51ddc5c8c73be499aee26e5d0a9ac59b">pegaQuadroEscolhido</a></div><div class="ttdeci">uint32_t pegaQuadroEscolhido()</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00070">GerenciadorMemoriaVirtual.c:70</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_afdc69587a08335b7e524ee80efe558f9"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#afdc69587a08335b7e524ee80efe558f9">paginasValidas</a></div><div class="ttdeci">uint8_t paginasValidas[numeroDePaginas]</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00055">GerenciadorMemoriaVirtual.c:55</a></div></div>
+<div class="ttc" id="astruct_par_html_a3d9ae72d3a04a91ad7518093d1710375"><div class="ttname"><a href="struct_par.html#a3d9ae72d3a04a91ad7518093d1710375">Par::quadro</a></div><div class="ttdeci">uint32_t quadro</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00020">GerenciadorMemoriaVirtual.c:20</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a6d0dd85408c06c9f93104af85ac75f3a"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a6d0dd85408c06c9f93104af85ac75f3a">numeroDeQuadros</a></div><div class="ttdeci">#define numeroDeQuadros</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00034">GerenciadorMemoriaVirtual.c:34</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_af3f86f7d401f027560f2e7e4ca82d9bd"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#af3f86f7d401f027560f2e7e4ca82d9bd">verificaTLB</a></div><div class="ttdeci">int verificaTLB(uint32_t numeroDaPagina, uint32_t *numeroDoQuadro)</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00110">GerenciadorMemoriaVirtual.c:110</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a7541eff6d24c41997a4f300bbd764f1a"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a7541eff6d24c41997a4f300bbd764f1a">backing_storage</a></div><div class="ttdeci">FILE * backing_storage</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00060">GerenciadorMemoriaVirtual.c:60</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a755d598200bbb0b545de43669a5c87b7"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a755d598200bbb0b545de43669a5c87b7">imprimeTLB</a></div><div class="ttdeci">void imprimeTLB()</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00139">GerenciadorMemoriaVirtual.c:139</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a8ffe77409d2779235138170af6bd0a77"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a8ffe77409d2779235138170af6bd0a77">trataFalhaDePagina</a></div><div class="ttdeci">void trataFalhaDePagina(uint32_t numeroDaPagina)</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00092">GerenciadorMemoriaVirtual.c:92</a></div></div>
+<div class="ttc" id="astruct_par_html_a2400310fb8380212cf84c64cdb7a8678"><div class="ttname"><a href="struct_par.html#a2400310fb8380212cf84c64cdb7a8678">Par::valido</a></div><div class="ttdeci">uint8_t valido</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00021">GerenciadorMemoriaVirtual.c:21</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a430599efb8eb4dbaf44957ea7520516b"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a430599efb8eb4dbaf44957ea7520516b">numeroDePaginas</a></div><div class="ttdeci">#define numeroDePaginas</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00033">GerenciadorMemoriaVirtual.c:33</a></div></div>
+<div class="ttc" id="a_gerenciador_memoria_virtual_8c_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="_gerenciador_memoria_virtual_8c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="_gerenciador_memoria_virtual_8c_source.html#l00267">GerenciadorMemoriaVirtual.c:267</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado em Domingo, 4 de Dezembro de 2022 23:45:13 para Projetando um gerenciador de memória virtual - Por Jennifer do Prado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

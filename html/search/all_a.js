@@ -1,0 +1,12 @@
+var searchData=
+[
+  ['tabelapaginas_30',['tabelaPaginas',['../_gerenciador_memoria_virtual_8c.html#acaab363c80c65a22ac7622a800006f8c',1,'GerenciadorMemoriaVirtual.c']]],
+  ['tamanhomemoria_31',['tamanhoMemoria',['../_gerenciador_memoria_virtual_8c.html#a4fe823b0df0e2d6d8e2fe92a1c73c732',1,'GerenciadorMemoriaVirtual.c']]],
+  ['tamanhopagina_32',['tamanhoPagina',['../_gerenciador_memoria_virtual_8c.html#a1ce599abee7f7df397d492781a5130ba',1,'GerenciadorMemoriaVirtual.c']]],
+  ['tamanhoquadro_33',['tamanhoQuadro',['../_gerenciador_memoria_virtual_8c.html#ade156b38dc36e86363564ead1082a358',1,'GerenciadorMemoriaVirtual.c']]],
+  ['tamanhotlb_34',['tamanhoTLB',['../_gerenciador_memoria_virtual_8c.html#a7d912cb9ffef9f5cfa5f78184508051d',1,'GerenciadorMemoriaVirtual.c']]],
+  ['tlb_35',['TLB',['../_gerenciador_memoria_virtual_8c.html#a241b2be5a9f43dcbc54b71071329e87d',1,'GerenciadorMemoriaVirtual.c']]],
+  ['total_5fcnt_36',['total_cnt',['../_gerenciador_memoria_virtual_8c.html#ac95c068a71ba946684e1e80146fb1703',1,'GerenciadorMemoriaVirtual.c']]],
+  ['traduzirendereco_37',['traduzirEndereco',['../_gerenciador_memoria_virtual_8c.html#a5d3275df1df68a436dbb750c68383347',1,'GerenciadorMemoriaVirtual.c']]],
+  ['tratafalhadepagina_38',['trataFalhaDePagina',['../_gerenciador_memoria_virtual_8c.html#a8ffe77409d2779235138170af6bd0a77',1,'GerenciadorMemoriaVirtual.c']]]
+];

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projetando um gerenciador de memória virtual - Por Jennifer do Prado: Referência à estrutura Par</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projetando um gerenciador de memória virtual - Por Jennifer do Prado
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Atributos Públicos</a> &#124;
+<a href="struct_par-members.html">Mostrar lista completa dos membros</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência à estrutura Par</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Atributos Públicos</h2></td></tr>
+<tr class="memitem:ae923bc31256f79d28adfbabe7fcda274"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_par.html#ae923bc31256f79d28adfbabe7fcda274">pagina</a></td></tr>
+<tr class="separator:ae923bc31256f79d28adfbabe7fcda274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d9ae72d3a04a91ad7518093d1710375"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_par.html#a3d9ae72d3a04a91ad7518093d1710375">quadro</a></td></tr>
+<tr class="separator:a3d9ae72d3a04a91ad7518093d1710375"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2400310fb8380212cf84c64cdb7a8678"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_par.html#a2400310fb8380212cf84c64cdb7a8678">valido</a></td></tr>
+<tr class="separator:a2400310fb8380212cf84c64cdb7a8678"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
+<div class="textblock"><p>Sistema para gerenciar memória virtual</p>
+<p>Esse programa tem como objetivo traduzir dos lógicos para endereços físicos para um espaço de endereço virtual de tamanho 2 16 = 65.536 bytes. Ele lê o arquivo address.txt que tem varios endereços lógicos e, utilizando um TLB e uma uma tabela de páginas, ele vai traduzir cada um dos endereços lógicos para seu endereço físico correspondente, e também o valor do byte armazenado no físico traduzido Criando a struct <a class="el" href="struct_par.html">Par</a> para construirmos a TLB </p>
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00019">19</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+</div><h2 class="groupheader">Documentação dos dados membro</h2>
+<a id="ae923bc31256f79d28adfbabe7fcda274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae923bc31256f79d28adfbabe7fcda274">&#9670;&nbsp;</a></span>pagina</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t Par::pagina</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00020">20</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a3d9ae72d3a04a91ad7518093d1710375"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d9ae72d3a04a91ad7518093d1710375">&#9670;&nbsp;</a></span>quadro</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t Par::quadro</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00020">20</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<a id="a2400310fb8380212cf84c64cdb7a8678"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2400310fb8380212cf84c64cdb7a8678">&#9670;&nbsp;</a></span>valido</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Par::valido</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definido na linha <a class="el" href="_gerenciador_memoria_virtual_8c_source.html#l00021">21</a> do ficheiro <a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a>.</p>
+
+</div>
+</div>
+<hr/>A documentação para esta estrutura foi gerada a partir do seguinte ficheiro:<ul>
+<li><a class="el" href="_gerenciador_memoria_virtual_8c_source.html">GerenciadorMemoriaVirtual.c</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado em Domingo, 4 de Dezembro de 2022 23:45:13 para Projetando um gerenciador de memória virtual - Por Jennifer do Prado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>
